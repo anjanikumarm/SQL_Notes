@@ -1,13 +1,13 @@
 
-# 🚀 SQL Subquery Interview Prep Guide for FAANG & Product-Based Companies
+# 🚀 SQL Subquery Interview Prep Guide
 
 ## 🧠 Overview
 
-This document covers **beginner to advanced SQL subquery-based interview questions**, optimized for FAANG and top product-based company interviews. Each scenario includes real-time context, performance tips, and multiple optimized solutions with detailed explanations.
+This document covers **Beginner to Advanced SQL subquery-based interview questions**. Each scenario includes real-time context, performance tips, and multiple optimized solutions with detailed explanations.
 
 ---
 
-## 📘 Table of Contents
+## Table of Contents
 
 1. [Beginner Subquery Questions](#beginner-subquery-questions)
 2. [Intermediate Subquery Questions](#intermediate-subquery-questions)
@@ -17,7 +17,7 @@ This document covers **beginner to advanced SQL subquery-based interview questio
 
 ---
 
-## 🔰 Beginner Subquery Questions
+## Beginner Subquery Questions
 
 ### 1. Customers Who Placed an Order
 
@@ -32,7 +32,7 @@ WHERE CustomerID IN (
 - **Purpose**: Find customers who have at least one order.
 - **Pattern**: IN + Subquery.
 - **Use Case**: Simple filter across relations.
-- **FAANG Tip**: Compare with `EXISTS` for large tables.
+- **Tip**: Compare with `EXISTS` for large tables.
 
 ---
 
@@ -51,7 +51,7 @@ WHERE Salary > (
 
 ---
 
-## 🟠 Intermediate Subquery Questions
+## Intermediate Subquery Questions
 
 ### 3. Top 3 Expensive Products Per Category
 
@@ -98,7 +98,7 @@ WHERE product_count = 1;
 
 ---
 
-## 🔴 Advanced Subquery Questions
+## Advanced Subquery Questions
 
 ### 5. Users Who Made First Purchase in 2024
 
@@ -130,7 +130,7 @@ HAVING COUNT(DISTINCT CategoryID) = (
 
 ### 7. Employees Who Earn the Second Highest Salary
 
-#### ✅ Scalar Subquery
+#### Scalar Subquery
 
 ```sql
 SELECT Name, Salary
@@ -144,7 +144,7 @@ WHERE Salary = (
 );
 ```
 
-#### ✅ Optimized: LIMIT + OFFSET (PostgreSQL, MySQL)
+#### Optimized: LIMIT + OFFSET (PostgreSQL, MySQL)
 
 ```sql
 SELECT Name, Salary
@@ -157,7 +157,7 @@ WHERE Salary = (
 );
 ```
 
-#### ✅ Using DENSE_RANK (Recommended)
+#### Using DENSE_RANK (Recommended)
 
 ```sql
 WITH RankedSalaries AS (
@@ -174,7 +174,7 @@ WHERE rank = 2;
 
 ### 8. Customers Who Bought More Than Average Per Order
 
-#### ✅ Original (Nested Subqueries)
+#### Original (Nested Subqueries)
 
 ```sql
 SELECT CustomerID
@@ -192,7 +192,7 @@ HAVING SUM(Quantity) > (
 );
 ```
 
-#### ✅ FAANG-Optimized with CTEs
+#### Optimized with CTEs
 
 ```sql
 WITH OrderQuantities AS (
@@ -216,7 +216,7 @@ WHERE CT.TotalQty > A.AvgQty;
 
 ---
 
-## 🧠 FAANG Interview Follow-Up Solutions
+## Interview Follow-Up Solutions
 
 ---
 
