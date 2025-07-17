@@ -5,7 +5,6 @@
 1. SQL Concepts
    - Query Execution Order 
    - CTE vs Temp table vs Sub-Query
-   - Data Transformation (Power Query, M)
    - Window Functions
    - SQL Query Optimization
      
