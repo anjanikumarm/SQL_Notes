@@ -3,8 +3,11 @@
 ### This repository has tutorials and notes related to important SQL Concepts and Coding Challenges. 
 
 1. SQL Concepts
-   - Query Execution Order 
-   - CTE vs Temp table vs Sub-Query
+   - Query Execution Order
+   - Joins and Duplicates
+   - CTE
+   - Sub Query
+   - CTE vs Sub-Query vs Temp table 
    - Window Functions
    - SQL Query Optimization
      
