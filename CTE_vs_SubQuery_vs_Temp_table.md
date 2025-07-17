@@ -1,16 +1,13 @@
 # Understanding CTEs vs Subqueries vs Temporary Tables in SQL
 
-> Author: [Your Name]  
-> Last Updated: July 2025
-
 ---
 
-## 📘 Overview
+## Overview
 This guide provides a **deep understanding of CTEs (Common Table Expressions), Subqueries, and Temporary Tables in SQL** — including their purpose, behavior (materialization), and real-world use cases. Designed for **data engineering interviews**, especially at **FAANG** and top product-based companies.
 
 ---
 
-## 🔁 Table of Contents
+## Table of Contents
 1. [CTE (Common Table Expression)](#cte-common-table-expression)
 2. [Subquery](#subquery)
 3. [Temporary Table](#temporary-table)
@@ -22,11 +19,11 @@ This guide provides a **deep understanding of CTEs (Common Table Expressions), S
 
 ## CTE (Common Table Expression)
 
-### ✅ Purpose
+### Purpose
 - Simplify and modularize complex SQL queries.
 - Enable **recursive queries** for hierarchical data.
 
-### ✅ Syntax
+### Syntax
 ```sql
 WITH cte_name AS (
     SELECT ...
@@ -34,7 +31,7 @@ WITH cte_name AS (
 SELECT * FROM cte_name;
 ```
 
-### ✅ Example: Top 3 Highest-Paid Employees per Department
+### Example: Top 3 Highest-Paid Employees per Department
 ```sql
 WITH RankedSalaries AS (
     SELECT 
@@ -49,7 +46,7 @@ FROM RankedSalaries
 WHERE salary_rank <= 3;
 ```
 
-### 🔁 Recursive CTE: Organizational Hierarchy
+### Recursive CTE: Organizational Hierarchy
 ```sql
 WITH RECURSIVE OrgHierarchy AS (
     SELECT employee_id, manager_id, employee_name
@@ -69,10 +66,10 @@ SELECT * FROM OrgHierarchy;
 
 ## Subquery
 
-### ✅ Purpose
+### Purpose
 - Perform inline filtering, aggregation, or transformation within a query.
 
-### ✅ Example: Employees with Salary > Average
+### Example: Employees with Salary > Average
 ```sql
 SELECT employee_id, name, salary
 FROM employees
@@ -82,7 +79,7 @@ WHERE salary > (
 );
 ```
 
-### 🔁 Correlated Subquery
+### Correlated Subquery
 ```sql
 SELECT employee_id, name, department_id, salary
 FROM employees e
@@ -93,7 +90,7 @@ WHERE salary > (
 );
 ```
 
-### 🔁 Subquery in FROM Clause (Derived Table)
+### Subquery in FROM Clause (Derived Table)
 ```sql
 SELECT department_id, AVG(salary) AS avg_salary
 FROM (
@@ -108,11 +105,11 @@ GROUP BY department_id;
 
 ## Temporary Table
 
-### ✅ Purpose
+### Purpose
 - Store intermediate results for **reuse across multiple queries**.
 - Suitable for **large datasets and ETL steps**.
 
-### ✅ Syntax & Example
+### Syntax & Example
 ```sql
 CREATE TEMPORARY TABLE recent_sales AS
 SELECT *
@@ -120,7 +117,7 @@ FROM sales
 WHERE sale_date >= CURRENT_DATE - INTERVAL '30 days';
 ```
 
-### ✅ Reuse Across Queries
+### Reuse Across Queries
 ```sql
 -- Product-level sales
 SELECT product_id, SUM(amount) AS total_sales
@@ -133,7 +130,7 @@ FROM recent_sales
 GROUP BY region;
 ```
 
-### 🔁 Indexing Example
+### Indexing Example
 ```sql
 CREATE INDEX idx_product ON recent_sales(product_id);
 ```
@@ -152,7 +149,7 @@ CREATE INDEX idx_product ON recent_sales(product_id);
 | Subquery         | ❌ Typically not                         | Inlined unless in FROM clause                          |
 | Temporary Table  | ✅ Always                                | Physically stored, can be indexed                      |
 
-### 🔁 PostgreSQL Example
+### PostgreSQL Example
 ```sql
 WITH my_cte AS MATERIALIZED (
   SELECT * FROM big_table WHERE status = 'active'
