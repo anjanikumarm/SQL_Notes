@@ -18,6 +18,7 @@ This guide provides a **deep understanding of CTEs (Common Table Expressions), S
 ---
 
 ## CTE (Common Table Expression)
+CTE is a temporary data source that stores the results of a query, albeit for the duration of the query.
 
 ### Purpose
 - Simplify and modularize complex SQL queries.
@@ -65,6 +66,7 @@ SELECT * FROM OrgHierarchy;
 ---
 
 ## Subquery
+just like CTEs and temp tables, a subquery is a way to generate a temporary result set to use in a main query.
 
 ### Purpose
 - Perform inline filtering, aggregation, or transformation within a query.
@@ -104,6 +106,7 @@ GROUP BY department_id;
 ---
 
 ## Temporary Table
+Like CTEs, temporary tables are a temporary data set stored as a table. The temp table is available for your whole SQL session.
 
 ### Purpose
 - Store intermediate results for **reuse across multiple queries**.
@@ -194,4 +197,10 @@ SELECT * FROM my_cte;
 - Use **temporary tables** in stored procedures for **large data reuse**.
 - Replace **correlated subqueries** with **joins or CTEs** when performance is an issue.
 - Avoid overusing **CTEs inside loops** in procedures — use temp tables instead.
+
+---
+
+### Reference Links
+- https://medium.com/analytics-vidhya/lets-talk-about-sql-part-7-242364486a0f
+
 
