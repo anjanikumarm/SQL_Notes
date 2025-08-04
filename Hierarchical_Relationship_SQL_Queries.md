@@ -1,5 +1,5 @@
 
-# 🧠 SQL Hierarchical Relationships - FAANG Interview Guide
+# 🧠 SQL Hierarchical Relationships - Interview Guide
 
 ## 1. Core Concepts Covered (Detailed)
 
