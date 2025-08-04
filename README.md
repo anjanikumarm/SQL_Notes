@@ -4,7 +4,7 @@
 
 1. SQL Concepts
    - Query Execution Order
-   - Joins and Duplicates
+   - [Tricky Joins - Duplicates and Performance](Tricky Joins.md)
    - CTE
    - Sub Query
    - [CTE vs Sub-Query vs Temp table](CTE_vs_SubQuery_vs_Temp_table.md) 
