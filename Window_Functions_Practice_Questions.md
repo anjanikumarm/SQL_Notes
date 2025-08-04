@@ -1,7 +1,5 @@
 # SQL Window Functions Interview Guide (Beginner to Advanced)
 
-This guide is crafted to help you prepare for **MAANG** and **top product-based company interviews** with a deep focus on **SQL Window Functions**. It includes an exhaustive list of real-world questions, explanations, and fully working solutions.
-
 ---
 
 ## What Are Window Functions?
