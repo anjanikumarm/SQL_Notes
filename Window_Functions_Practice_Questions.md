@@ -1,6 +1,5 @@
 # SQL Window Functions Interview Guide (Beginner to Advanced)
 
----
 
 ## What Are Window Functions?
 Window functions perform calculations across a set of table rows that are somehow related to the current row. Unlike aggregate functions, they do not collapse rows.
