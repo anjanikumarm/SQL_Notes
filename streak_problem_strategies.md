@@ -27,33 +27,37 @@ FROM table_name
 ```sql
 
 -- Example: Longest winning streak for a team
-WITH streak_groups AS (
-    SELECT 
+WITH ordered_games AS (
+    SELECT
         team_id,
         game_date,
         result,
-        game_id,
-        ROW_NUMBER() OVER (PARTITION BY team_id ORDER BY game_date) -
-        ROW_NUMBER() OVER (PARTITION BY team_id, result ORDER BY game_date) AS group_id
+        ROW_NUMBER() OVER (PARTITION BY team_id ORDER BY game_date DESC) AS rn
     FROM games
-    WHERE result = 'W'  -- Only wins
 ),
-streak_lengths AS (
-    SELECT 
-        team_id,
-        group_id,
-        COUNT(*) as streak_length,
-        MIN(game_date) as start_date,
-        MAX(game_date) as end_date
-    FROM streak_groups
-    GROUP BY team_id, group_id
+streak_flags AS (
+    SELECT *,
+        CASE WHEN result = 'W' THEN 1 ELSE 0 END AS is_win
+    FROM ordered_games
+),
+streak_breaks AS (
+    SELECT *,
+        SUM(CASE WHEN is_win = 0 THEN 1 ELSE 0 END) OVER (
+            PARTITION BY team_id ORDER BY rn
+            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+        ) AS loss_streak_flag
+    FROM streak_flags
+),
+current_streak AS (
+    SELECT team_id, COUNT(*) AS current_win_streak
+    FROM streak_breaks
+    WHERE loss_streak_flag = 0
+    GROUP BY team_id
 )
-SELECT 
-    team_id,
-    MAX(streak_length) as longest_streak
-FROM streak_lengths
-GROUP BY team_id
-ORDER BY longest_streak DESC;
+SELECT * 
+FROM current_streak
+ORDER BY current_win_streak DESC;
+
 ```
  
 ### Technique 2: Complex Conditions 
